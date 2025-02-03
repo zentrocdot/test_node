@@ -147,9 +147,8 @@ class CircleDetection:
         output_string = "Gotcha!"
         output_masks = []
         w, h = None, None
-        w = image.size[0]
-        h = image.size[1]
-        for i in ImageSequence.Iterator(img):
+        excluded_formats = ['MPO']
+        for i in ImageSequence.Iterator(image):
             i = node_helpers.pillow(ImageOps.exif_transpose, i)
             if i.mode == 'I':
                 i = i.point(lambda i: i * (1 / 255))
@@ -172,7 +171,6 @@ class CircleDetection:
             output_image = torch.cat(output_images, dim=0)
             output_mask = torch.cat(output_masks, dim=0)
         else:
-            #output_image = output_images[0]
             output_mask = output_masks[0] 
         #output_mask = image            
         #return (image_out, output_mask, output_string,)
