@@ -7,6 +7,8 @@ import torch
 from PIL import Image, ImageDraw
 import json
 
+
+
 # Tensor to PIL function.
 def tensor2pil(image):
     '''Tensor to PIL image.''' 
@@ -18,6 +20,14 @@ def pil2tensor(image):
     '''PIL image to tensor.'''
     # Return tensor.
     return torch.from_numpy(np.array(image).astype(np.float32) / 255.0).unsqueeze(0)
+
+class AnyType(str):
+  """A special class that is always equal in not equal comparisons. Credit to pythongosssss"""
+
+  def __ne__(self, __value: object) -> bool:
+    return False
+
+any = AnyType("*")
 
 class CircleDetection:
     '''Circle detection node.'''
