@@ -143,4 +143,6 @@ class CircleDetection:
         # Create tensor.
         image_out = pil2tensor(img_output)
         # Return None.
+        output_string = "Gotcha!"
+        output_mask = image_out
         return (image_out, output_mask, output_string,)
