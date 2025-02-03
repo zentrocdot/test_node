@@ -242,3 +242,11 @@ class ShowText:
     def show_text(self, text_int_float):
         type_info = [f"{value}" for value in text_int_float]
         return {"ui": {"text": type_info}}
+
+NODE_CLASS_MAPPINGS = {
+    "ShowText|pysssss": ShowText,
+}
+
+NODE_DISPLAY_NAME_MAPPINGS = {
+    "ShowText|pysssss": "Show Text 🐍",
+}
