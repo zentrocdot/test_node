@@ -170,6 +170,7 @@ class DisplayData:
     def INPUT_TYPES(cls):
         return {
             "required": {
+                "text": ("STRING", {"forceInput": True}),
                 "source": (any, {}),
             },
         }
