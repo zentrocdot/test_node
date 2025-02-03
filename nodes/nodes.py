@@ -37,7 +37,7 @@ class CircleDetection:
         }
 
     #RETURN_TYPES = ("IMAGE", "MASK", "STRING")
-    RETURN_TYPES = ("IMAGE","STRING",)
+    RETURN_TYPES = ("IMAGE", "MASK", "STRING",)
     #RETURN_NAMES = ("IMAGE",)
     FUNCTION = "circle_detection"
     CATEGORY = "🧬 Object Detection Nodes"
@@ -145,6 +145,6 @@ class CircleDetection:
         image_out = pil2tensor(img_output)
         # Return None.
         output_string = "Gotcha!"
-        #output_mask = image_out
+        output_mask = image_out
         #return (image_out, output_mask, output_string,)
-        return (image_out, output_string,)
+        return (image_out, output_mask, output_string,)
