@@ -31,7 +31,7 @@ class CircleDetection:
     '''Circle detection node.'''
 
     @classmethod
-    def INPUT_TYPES(cls):
+    def INPUT_TYPES(self):
         return {
             "required": {
                 "image": ("IMAGE",),
@@ -167,10 +167,9 @@ class DisplayData:
     CATEGORY = "🧬 Object Detection Nodes"
 
     @classmethod
-    def INPUT_TYPES(cls):
+    def INPUT_TYPES(self):
         return {
             "required": {
-                #"text": ("STRING", {"forceInput": True}),
                 "source": (any, {}),
             },
         }
@@ -180,7 +179,7 @@ class DisplayData:
     OUTPUT_NODE = True
     CATEGORY = "🧬 Object Detection Nodes"
     
-    def display_data(self, text, source=None):
+    def display_data(self, source=None):
         '''Display data.'''
         print("Source: Gotcha!")
         value = 'None'
@@ -197,6 +196,5 @@ class DisplayData:
                 except Exception:
                     value = 'Source exists, but could be displayed.'
         print("Source:", source) 
-        #value = "test"
         return {"ui": {"text": value,}}
 
