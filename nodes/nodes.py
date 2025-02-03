@@ -44,6 +44,7 @@ class CircleDetection:
     
     def draw_circles(self, img, detected_circles, debug, color_tuple_str, thickness):
         '''Draw circles.'''
+        outstr = ""
         print(color_tuple_str)
         # Copy image to a new image. 
         newImg = img.copy()
@@ -75,8 +76,9 @@ class CircleDetection:
                 # Print dimensions and radius.
                 if debug: 
                     print("No.:", count, "x:", a, "y", b, "r:", r)
+                    outstr = outstr + "No. " + count + " x: " + a + " y: " + b + " r: " + r + "\n" 
         # Return image, co-ordinates and radius.
-        return newImg, (a, b, r)
+        return newImg, (a, b, r), outstr
 
     def pre_img(self, img):
         '''Preprocess image.'''
@@ -114,9 +116,9 @@ class CircleDetection:
     def post_img(self, img, detected_circles, debug, color_tuple, thickness):
         '''Postprocess image.'''
         # Draw circles.
-        img, (a, b, r) = self.draw_circles(img, detected_circles, debug, color_tuple, thickness)
+        img, (a, b, r), outstr = self.draw_circles(img, detected_circles, debug, color_tuple, thickness)
         # Return image and tuple.
-        return img, (a, b, r)
+        return img, (a, b, r), outstr
 
     def circle_detection(self, image, threshold_canny_edge, threshold_circle_center, minR, maxR, minDist, dp, color_tuple, thickness):
         '''Main script function.'''
@@ -138,17 +140,14 @@ class CircleDetection:
         # Process image. Detect circles.
         detected_circles = self.detect_circles(gray_blur, threshold_canny_edge, threshold_circle_center, minR, maxR, minDist, dp, debug)
         # Postrocess image.
-        img_output, _ = self.post_img(img_input, detected_circles, debug, color_tuple, thickness)
+        img_output, _, out_str = self.post_img(img_input, detected_circles, debug, color_tuple, thickness)
         # Create output image.
         img_output = Image.fromarray(img_output)
         # Create tensor.
         image_out = pil2tensor(img_output)
         # Return None.
-        output_string = "Gotcha!"
-        w, h = None, None
-        #img = np.array(image).astype(np.float32) / 255.0
-        #img = torch.from_numpy(img)[None,]
-        mask = torch.zeros((64,64), dtype=torch.float32, device="cpu")
-        #output_masks.append(mask.unsqueeze(0))
-        output_mask = mask           
-        return (image_out, output_mask, output_string,)
+        #output_string = "Gotcha!"
+        #w, h = None, None
+        # Create simple mask for testing purposes.
+        out_mask = torch.zeros((64,64), dtype=torch.float32, device="cpu")          
+        return (image_out, out_mask, out_string,)
