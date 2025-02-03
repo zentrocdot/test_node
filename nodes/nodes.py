@@ -99,7 +99,7 @@ class CircleDetection:
                     print("No.:", count, "x:", a, "y", b, "r:", r)
                     outstr = outstr + "No. " + str(count) + " x: " + str(a) + " y: " + str(b) + " r: " + str(r) + "\n"
         # Return image, co-ordinates and radius.
-        return newImg, (a, b, r), outstr, newImg
+        return newImg, (a, b, r), outstr, blank_image
 
     def pre_img(self, img):
         '''Preprocess image.'''
@@ -167,8 +167,6 @@ class CircleDetection:
         # Create tensor.
         image_out = pil2tensor(img_output)
         blank_image = pil2tensor(blank_image)
-        # Create simple mask for testing purposes.
-        #out_mask = torch.zeros((64,64), dtype=torch.float32, device="cpu")
         # Return None.
         #return (image_out, out_mask, out_string,)
         return (image_out, blank_image, out_string,)
