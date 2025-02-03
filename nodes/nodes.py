@@ -152,11 +152,11 @@ class CircleDetection:
         # Return None.
         return (image_out, out_mask, out_string,)
 
-class RgthreeDisplayAny:
+class DisplayAny:
   """Display any data node."""
 
-  NAME = get_name('Display Any')
-  CATEGORY = get_category()
+  NAME = "Display"
+  CATEGORY = "🧬 Object Detection Nodes"
 
   @classmethod
   def INPUT_TYPES(cls):  # pylint: disable = invalid-name, missing-function-docstring
