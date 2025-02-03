@@ -5,7 +5,7 @@ import numpy as np
 import cv2
 import torch
 from PIL import Image, ImageDraw
-import json
+#import json
 
 # Tensor to PIL function.
 def tensor2pil(image):
@@ -46,7 +46,8 @@ class CircleDetection:
             }
         }
 
-    RETURN_TYPES = ("IMAGE", "MASK", "STRING",)
+    #RETURN_TYPES = ("IMAGE", "MASK", "STRING",)
+    RETURN_TYPES = ("IMAGE", "STRING",)
     #RETURN_NAMES = ("IMAGE", "MASK, "TEXT",)
     FUNCTION = "circle_detection"
     CATEGORY = "🧬 Object Detection Nodes"
@@ -156,45 +157,8 @@ class CircleDetection:
         # Create tensor.
         image_out = pil2tensor(img_output)
         # Create simple mask for testing purposes.
-        out_mask = torch.zeros((64,64), dtype=torch.float32, device="cpu") 
+        #out_mask = torch.zeros((64,64), dtype=torch.float32, device="cpu") 
         # Return None.
-        return (image_out, out_mask, out_string,)
-
-class DisplayData:
-    '''Display any data node.'''
-
-    # NAME = "Display"
-    CATEGORY = "🧬 Object Detection Nodes"
-
-    @classmethod
-    def INPUT_TYPES(self):
-        return {
-            "required": {
-                "source": (any, {}),
-            },
-        }
-
-    RETURN_TYPES = ()
-    FUNCTION = "display_data"
-    OUTPUT_NODE = True
-    CATEGORY = "🧬 Object Detection Nodes"
-    
-    def display_data(self, source=None):
-        '''Display data.'''
-        print("Source: Gotcha!")
-        value = 'None'
-        if isinstance(source, str):
-            value = source
-        elif isinstance(source, (int, float, bool)):
-            value = str(source)
-        elif source is not None:
-            try:
-                value = json.dumps(source)
-            except Exception:
-                try:
-                    value = str(source)
-                except Exception:
-                    value = 'Source exists, but could be displayed.'
-        print("Source:", source) 
-        return {"ui": {"text": value,}}
+        #return (image_out, out_mask, out_string,)
+        return (image_out, out_string,)
 
