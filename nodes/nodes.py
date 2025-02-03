@@ -19,6 +19,7 @@ def pil2tensor(image):
     return torch.from_numpy(np.array(image).astype(np.float32) / 255.0).unsqueeze(0)
 
 class CircleDetection:
+    '''Circle detection node.'''
 
     @classmethod
     def INPUT_TYPES(self):
@@ -151,7 +152,7 @@ class CircleDetection:
         return (image_out, out_mask, out_string,)
 
 class DisplayData:
-    """Display data node."""
+    '''Display data node.'''
 
     CATEGORY = "🧬 Object Detection Nodes"    
 
