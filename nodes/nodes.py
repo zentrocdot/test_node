@@ -152,7 +152,7 @@ class CircleDetection:
         # Return None.
         return (image_out, out_mask, out_string,)
 
-class DisplayAny:
+class DisplayData:
   """Display any data node."""
 
   NAME = "Display"
