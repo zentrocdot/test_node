@@ -1,5 +1,5 @@
 from .nodes.nodes import *
-
+from .node.nodes import DisplayData, ShowText
 NODE_CLASS_MAPPINGS = { 
     "Circle Detection": CircleDetection,
     "Display Data": DisplayData,
