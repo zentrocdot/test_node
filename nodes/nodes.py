@@ -193,5 +193,5 @@ class DisplayData:
                     value = str(source)
                 except Exception:
                     value = 'Source exists, but could be displayed.'
-
-      return {"ui": {"text": (value,)}}
+        print(source) 
+        return {"ui": {"text": (value,)}}
