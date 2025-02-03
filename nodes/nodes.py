@@ -64,7 +64,7 @@ class CircleDetection:
         '''Draw circles.'''
         height, width, channels = img.shape
         print(height, width, channels)
-        #blank_image = np.zeros((height,width,3), np.uint8)
+        blank_image = np.zeros((height,width,3), np.uint8)
         outstr = ""
         print(color_tuple_str)
         # Copy image to a new image.
@@ -166,8 +166,9 @@ class CircleDetection:
         img_output = Image.fromarray(img_output)
         # Create tensor.
         image_out = pil2tensor(img_output)
+        blank_image = pil2tensor(blank_image)
         # Create simple mask for testing purposes.
         #out_mask = torch.zeros((64,64), dtype=torch.float32, device="cpu")
         # Return None.
         #return (image_out, out_mask, out_string,)
-        return (image_out, image_out, out_string,)
+        return (image_out, blank_image, out_string,)
