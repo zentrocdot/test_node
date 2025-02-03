@@ -24,7 +24,7 @@ class CircleDetection:
     def INPUT_TYPES(self):
         return {
             "required": {
-                "image": ("IMAGE",),
+                "image": ("IMAGE", "MASK"),
                 "threshold_canny_edge": ("FLOAT", {"default": 50, "min": 0, "max": 2048}),
                 "threshold_circle_center": ("FLOAT", {"default": 30, "min": 0, "max": 2048}),
                 "minR": ("INT", {"default": 1, "min": 0, "max": 2048}),
@@ -36,7 +36,7 @@ class CircleDetection:
             }
         }
 
-    RETURN_TYPES = ("IMAGE",)
+    RETURN_TYPES = ("IMAGE", "MASK", "STRING")
     #RETURN_NAMES = ("IMAGE",)
     FUNCTION = "circle_detection"
     CATEGORY = "🧬 Object Detection Nodes"
@@ -143,4 +143,4 @@ class CircleDetection:
         # Create tensor.
         image_out = pil2tensor(img_output)
         # Return None.
-        return (image_out,)
+        return (image_out, output_mask, output_string,)
