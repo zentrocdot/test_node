@@ -55,7 +55,7 @@ class CircleDetection:
 
     #RETURN_TYPES = ("IMAGE", "MASK", "STRING",)
     RETURN_TYPES = ("IMAGE", "IMAGE", "STRING",)
-    #RETURN_NAMES = ("IMAGE (Detection)", "IMAGE (Mask), "Data",)
+    RETURN_NAMES = ("IMG0", "IMG1, "DATA",)
     FUNCTION = "circle_detection"
     CATEGORY = "🧬 Object Detection Nodes"
     OUTPUT_NODE = True
