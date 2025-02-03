@@ -170,7 +170,7 @@ class DisplayData:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "text": ("STRING", {"forceInput": True}),
+                #"text": ("STRING", {"forceInput": True}),
                 "source": (any, {}),
             },
         }
@@ -197,8 +197,6 @@ class DisplayData:
                 except Exception:
                     value = 'Source exists, but could be displayed.'
         print("Source:", source) 
-        value = "test"
-        return {"ui": {"text": value}}
-
-
+        #value = "test"
+        return ("ui": {"text": value})
 
