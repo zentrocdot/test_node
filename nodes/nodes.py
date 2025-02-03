@@ -148,3 +148,37 @@ class CircleDetection:
         out_mask = torch.zeros((64,64), dtype=torch.float32, device="cpu") 
         # Return None.
         return (image_out, out_mask, out_string,)
+
+class DisplayData:
+  """Display data node."""
+
+  CATEGORY = "🧬 Object Detection Nodes"    
+
+  @classmethod
+  def INPUT_TYPES(cls):
+    return {
+      "required": {
+        "source": (any, {}),
+      },
+    }
+
+  RETURN_TYPES = ()
+  FUNCTION = "main"
+  OUTPUT_NODE = True
+
+  def main(self, source=None):
+    value = 'None'
+    if isinstance(source, str):
+      value = source
+    elif isinstance(source, (int, float, bool)):
+      value = str(source)
+    elif source is not None:
+      try:
+        value = json.dumps(source)
+      except Exception:
+        try:
+          value = str(source)
+        except Exception:
+          value = 'source exists, but could not be serialized.'
+
+    return {"ui": {"text": (value,)}}
