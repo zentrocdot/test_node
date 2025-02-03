@@ -180,7 +180,7 @@ class DisplayData:
     OUTPUT_NODE = True
     CATEGORY = "🧬 Object Detection Nodes"
     
-    def display_data(self, test, source=None):
+    def display_data(self, text, source=None):
         '''Display data.'''
         print("Source: Gotcha!")
         value = 'None'
@@ -198,7 +198,7 @@ class DisplayData:
                     value = 'Source exists, but could be displayed.'
         print("Source:", source) 
         value = "test"
-        return {"ui": {"text": (value,)}}
+        return {"ui": {"text": value}}
 
 
 
