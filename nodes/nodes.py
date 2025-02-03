@@ -265,6 +265,6 @@ class PrintHelloWorld:
     OUTPUT_NODE = True
     CATEGORY = "🧬 Object Detection Nodes"
 
-    def print_text(self, text):
+    def print_text(self, source, text):
         print(f"Tutorial Text : {text}")  
-        return {}
+        return {source}
