@@ -92,7 +92,7 @@ class CircleDetection:
                 a, b, r = pnt[0], pnt[1], pnt[2]
                 # Draw the circumference of the circle.
                 cv2.circle(newImg, (a, b), r, color_tuple, thickness)
-                cv2.circle(blank_image, (a, b), r, (0,0,0), 1)
+                cv2.circle(blank_image, (a, b), r, (255,255,255), 1)
                 # Draw a small circle of radius 1 to show the center.
                 cv2.circle(newImg, (a, b), 1, color_tuple, 3)
                 # Print dimensions and radius.
