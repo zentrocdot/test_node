@@ -5,6 +5,7 @@ import numpy as np
 import cv2
 import torch
 from PIL import Image, ImageDraw
+import json
 
 # Tensor to PIL function.
 def tensor2pil(image):
