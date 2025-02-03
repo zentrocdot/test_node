@@ -40,6 +40,7 @@ class CircleDetection:
     #RETURN_NAMES = ("IMAGE", "MASK, "TEXT",)
     FUNCTION = "circle_detection"
     CATEGORY = "🧬 Object Detection Nodes"
+    OUTPUT_NODE = True
     
     def draw_circles(self, img, detected_circles, debug, color_tuple_str, thickness):
         '''Draw circles.'''
@@ -156,29 +157,29 @@ class DisplayData:
 
   @classmethod
   def INPUT_TYPES(cls):
-    return {
-      "required": {
-        "source": (any, {}),
-      },
-    }
+      return {
+          "required": {
+              "source": (any, {}),
+          },
+      }
 
   RETURN_TYPES = ()
-  FUNCTION = "main"
+  FUNCTION = "display_data"
   OUTPUT_NODE = True
 
-  def main(self, source=None):
-    value = 'None'
-    if isinstance(source, str):
-      value = source
-    elif isinstance(source, (int, float, bool)):
-      value = str(source)
-    elif source is not None:
-      try:
-        value = json.dumps(source)
-      except Exception:
-        try:
+  def display_data(self, source=None):
+      value = 'None'
+      if isinstance(source, str):
+          value = source
+      elif isinstance(source, (int, float, bool)):
           value = str(source)
-        except Exception:
-          value = 'source exists, but could not be serialized.'
+      elif source is not None:
+          try:
+              value = json.dumps(source)
+          except Exception:
+              try:
+                  value = str(source)
+              except Exception:
+                  value = 'source exists, but could not be serialized.'
 
     return {"ui": {"text": (value,)}}
