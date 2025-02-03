@@ -2,6 +2,7 @@ from .nodes.nodes import *
 
 NODE_CLASS_MAPPINGS = { 
     "Circle Detection": CircleDetection,
+    "ETS Show Data Node": ETShowDataNode,
     "Display Any": RgthreeDisplayAny,
     "Display Int": RgthreeDisplayInt,
     }
