@@ -2,9 +2,7 @@ from .nodes.nodes import *
 
 NODE_CLASS_MAPPINGS = { 
     "Circle Detection": CircleDetection,
-    "ETS Show Data Node": ETShowDataNode,
-    "Display Any": RgthreeDisplayAny,
-    "Display Int": RgthreeDisplayInt,
+    "Show Data": ShowData,
     }
     
 print("\033[34mComfyUI Circle Detection Nodes: \033[92mLoaded\033[0m")
