@@ -218,7 +218,7 @@ class ShowData:
     def render_data(self, input):
         '''Render data.'''
         output = ""
-        listen = len(input)
+        listlen = len(input)
         if not isinstance(input, list):
             output = str(input)
         elif listlen == 0:
