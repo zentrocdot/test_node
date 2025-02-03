@@ -161,4 +161,3 @@ class CircleDetection:
         # Return None.
         #return (image_out, out_mask, out_string,)
         return (image_out, out_string,)
-
