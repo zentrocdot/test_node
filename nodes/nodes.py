@@ -252,11 +252,10 @@ NODE_DISPLAY_NAME_MAPPINGS = {
 }
 
 class PrintHelloWorld:     
-
     @classmethod
-    def INPUT_TYPES(cls):
-               
-        return {"required": {       
+    def INPUT_TYPES(cls):        
+        return {"required": {  
+                    "source": (any, {}),
                     "text": ("STRING", {"multiline": False, "default": "Hello World"}),
                     }
                 }
@@ -267,7 +266,5 @@ class PrintHelloWorld:
     CATEGORY = "🧬 Object Detection Nodes"
 
     def print_text(self, text):
-
-        print(f"Tutorial Text : {text}")
-        
+        print(f"Tutorial Text : {text}")  
         return {}
