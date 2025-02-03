@@ -1,7 +1,7 @@
 from .nodes.nodes import *
 
 NODE_CLASS_MAPPINGS = { 
-    "🔍 Circle Detection": CircleDetection,
+    "🔬 Circle Detection": CircleDetection,
     "📔 Show Data": ShowData,
     }
     
