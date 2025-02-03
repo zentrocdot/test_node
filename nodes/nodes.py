@@ -221,17 +221,12 @@ class ShowData:
         listLen = len(input)
         if not isinstance(input, list):
             output = str(input)
-            #return str(input)
-        elif listlen == 0
-        #listLen = len(input)
-        #if listLen == 0:
+        elif listlen == 0:
             output = ""
-            #return ""
         elif listLen == 1:
             output = str(input[0])
-            #return str(input[0])
         else:
-            result = "List:\n"
             for i, element in enumerate(input):
-                result += f"- {str(input[i])}\n"
-        return result
+                output += f"{str(input[i])}\n"
+            output = output.strip()    
+        return output
