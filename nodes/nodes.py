@@ -175,10 +175,9 @@ class DisplayData:
         }
 
     RETURN_TYPES = ()
-    RETURN_TYPES = ("STRING",)
+    #RETURN_TYPES = ("STRING",)
     FUNCTION = "display_data"
-    OUTPUT_NODE = True
-    
+    #OUTPUT_NODE = True
 
     def display_data(self, source=None):
         '''Display data.'''
