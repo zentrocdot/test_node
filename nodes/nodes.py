@@ -5,7 +5,7 @@ import numpy as np
 import cv2
 import torch
 from PIL import Image, ImageDraw
-import json
+#import json
 
 # Tensor to PIL function.
 def tensor2pil(image):
@@ -174,12 +174,13 @@ class DisplayData:
             value = source
         elif isinstance(source, (int, float, bool)):
             value = str(source)
-        elif source is not None:
-            try:
-                value = json.dumps(source)
-            except Exception:
-                try:
-                    value = str(source)
-                except Exception:
-                    value = 'Source exists, but cannot be displaed.'
-        return {"ui": {"text": (value,)}}
+        #elif source is not None:
+        #    try:
+        #        value = json.dumps(source)
+        #    except Exception:
+        #        try:
+        #            value = str(source)
+        #        except Exception:
+        #            value = 'Source exists, but cannot be displaed.'
+        return ()
+        #return {"ui": {"text": (value,)}}
