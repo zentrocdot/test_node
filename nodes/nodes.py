@@ -7,8 +7,6 @@ import torch
 from PIL import Image, ImageDraw
 import json
 
-
-
 # Tensor to PIL function.
 def tensor2pil(image):
     '''Tensor to PIL image.''' 
@@ -22,10 +20,10 @@ def pil2tensor(image):
     return torch.from_numpy(np.array(image).astype(np.float32) / 255.0).unsqueeze(0)
 
 class AnyType(str):
-  """A special class that is always equal in not equal comparisons. Credit to pythongosssss"""
+    '''A special class that is always equal in not equal comparisons. Credit to Rgthree / pythongosssss'''
 
-  def __ne__(self, __value: object) -> bool:
-    return False
+    def __ne__(self, __value: object) -> bool:
+        return False
 
 any = AnyType("*")
 
@@ -163,36 +161,37 @@ class CircleDetection:
         return (image_out, out_mask, out_string,)
 
 class DisplayData:
-  """Display any data node."""
+    '''Display any data node.'''
 
-  NAME = "Display"
-  CATEGORY = "🧬 Object Detection Nodes"
+    # NAME = "Display"
+    CATEGORY = "🧬 Object Detection Nodes"
 
-  @classmethod
-  def INPUT_TYPES(cls):  # pylint: disable = invalid-name, missing-function-docstring
-    return {
-      "required": {
-        "source": (any, {}),
-      },
-    }
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "source": (any, {}),
+            },
+        }
 
-  RETURN_TYPES = ()
-  FUNCTION = "main"
-  OUTPUT_NODE = True
+    RETURN_TYPES = ()
+    FUNCTION = "display_data"
+    OUTPUT_NODE = True
 
-  def main(self, source=None):
-    value = 'None'
-    if isinstance(source, str):
-      value = source
-    elif isinstance(source, (int, float, bool)):
-      value = str(source)
-    elif source is not None:
-      try:
-        value = json.dumps(source)
-      except Exception:
-        try:
-          value = str(source)
-        except Exception:
-          value = 'source exists, but could not be serialized.'
+    def display_data(self, source=None):
+        '''Display data.''' 
+        value = 'None'
+        if isinstance(source, str):
+            value = source
+        elif isinstance(source, (int, float, bool)):
+            value = str(source)
+        elif source is not None:
+            try:
+                value = json.dumps(source)
+            except Exception:
+                try:
+                    value = str(source)
+                except Exception:
+                    value = 'Source exists, but could be displayed.'
 
-    return {"ui": {"text": (value,)}}
+      return {"ui": {"text": (value,)}}
