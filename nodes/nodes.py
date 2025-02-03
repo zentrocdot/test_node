@@ -198,5 +198,5 @@ class DisplayData:
                     value = 'Source exists, but could be displayed.'
         print("Source:", source) 
         #value = "test"
-        return ("ui": {"text": value})
+        return {"ui": {"text": value,}}
 
