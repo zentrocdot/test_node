@@ -12,6 +12,8 @@ import numpy as np
 import cv2
 import torch
 from PIL import Image
+from typing import Any
+from server import PromptServer
 
 # Tensor to PIL function.
 def tensor2pil(image):
@@ -25,13 +27,13 @@ def pil2tensor(image):
     # Return tensor.
     return torch.from_numpy(np.array(image).astype(np.float32) / 255.0).unsqueeze(0)
 
-#class AnyType(str):
-#    '''A special class that is always equal in not equal comparisons. Credit to Rgthree / pythongosssss'''
-#
-#    def __ne__(self, __value: object) -> bool:
-#        return False
-#
-#any = AnyType("*")
+class AnyType(str):
+    '''A special class that is always equal in not equal comparisons.'''
+    
+    def __ne__(self, __value: object) -> bool:
+        return False
+
+anyType = AnyType("*")
 
 class CircleDetection:
     '''Circle detection node.'''
@@ -176,107 +178,18 @@ class CircleDetection:
         #return (image_out, out_mask, out_string,)
         return (image_out, blank_image, out_string,)
 
-import json
-#from .constants import get_category, get_name
-
-
-class AnyType(str):
-  """A special class that is always equal in not equal comparisons. Credit to pythongosssss"""
-
-  def __ne__(self, __value: object) -> bool:
-    return False
-
-
-any = AnyType("*")
-
-
-class RgthreeDisplayAny:
-  """Display any data node."""
-
-  #NAME = get_name('Display Any')
-  CATEGORY = "🧬 Object Detection Nodes"
-
-  @classmethod
-  def INPUT_TYPES(cls):  # pylint: disable = invalid-name, missing-function-docstring
-    return {
-      "required": {
-        "source": (any, {}),
-      },
-    }
-
-  RETURN_TYPES = ()
-  FUNCTION = "main"
-  OUTPUT_NODE = True
-
-  def main(self, source=None):
-    value = 'None'
-    if isinstance(source, str):
-      value = source
-    elif isinstance(source, (int, float, bool)):
-      value = str(source)
-    elif source is not None:
-      try:
-        value = json.dumps(source)
-      except Exception:
-        try:
-          value = str(source)
-        except Exception:
-          value = 'source exists, but could not be serialized.'
-
-    return {"ui": {"text": (value,)}}
-
-
-class RgthreeDisplayInt:
-  """Old DisplayInt node.
-
-  Can be ported over to DisplayAny if https://github.com/comfyanonymous/ComfyUI/issues/1527 fixed.
-  """
-
-  #NAME = get_name('Display Int')
-  CATEGORY = "🧬 Object Detection Nodes"
-
-  @classmethod
-  def INPUT_TYPES(s):
-    return {
-      "required": {
-        "input": ("INT", {
-          "forceInput": True
-        }),
-      },
-    }
-
-  RETURN_TYPES = ()
-  FUNCTION = "main"
-  OUTPUT_NODE = True
-
-  def main(self, input=None):
-    return {"ui": {"text": (input,)}}
-
-from typing import Any
-from server import PromptServer
-
-
-class AnyType(str):
-    def __ne__(self, __value: object) -> bool:
-        return False
-
-
-anyType = AnyType("*")
-
-
 def updateTextWidget(node, widget, text):
     """
     Raises an event to update a widget's text.
     """
-    # It's my understanding this is supposed to work via the "ui" return
-    # value, but that appears to no longer be the case in the latest
-    # version of ComfyUI.
+    # It is my understanding that this is supposed to work via the "ui" 
+    # return value, but that appears to no longer be the case in the 
+    # latest version of ComfyUI.
     PromptServer.instance.send_sync("exectails.text_updater.node_processed", {"node": node, "widget": widget, "text": text})
 
-class ETShowDataNode:
-    """
-    A node that takes any value and displays it as a string.
-    """
+class ShowData:
+    '''A node that takes any value and displays it as a string.
+    '''
 
     @classmethod
     def INPUT_TYPES(s):
@@ -295,34 +208,22 @@ class ETShowDataNode:
     OUTPUT_NODE = True
 
     CATEGORY = "🧬 Object Detection Nodes"
-    FUNCTION = "process"
+    FUNCTION = "process_data"
 
-    def process(self, input, data, unique_id):
+    def process_data(self, input, data, unique_id):
         displayText = self.render(input)
-
         updateTextWidget(unique_id, "data", displayText)
         return {"ui": {"data": displayText}}
 
     def render(self, input):
         if not isinstance(input, list):
             return str(input)
-
         listLen = len(input)
-
         if listLen == 0:
             return ""
-
         if listLen == 1:
             return str(input[0])
-
         result = "List:\n"
-
         for i, element in enumerate(input):
             result += f"- {str(input[i])}\n"
-
         return result
-
-
-
-
-
