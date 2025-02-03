@@ -19,13 +19,13 @@ def pil2tensor(image):
     # Return tensor.
     return torch.from_numpy(np.array(image).astype(np.float32) / 255.0).unsqueeze(0)
 
-#class AnyType(str):
-#    '''A special class that is always equal in not equal comparisons. Credit to Rgthree / pythongosssss'''
-#
-#    def __ne__(self, __value: object) -> bool:
-#        return False
-#
-#any = AnyType("*")
+class AnyType(str):
+    '''A special class that is always equal in not equal comparisons. Credit to Rgthree / pythongosssss'''
+
+    def __ne__(self, __value: object) -> bool:
+        return False
+
+any = AnyType("*")
 
 class CircleDetection:
     '''Circle detection node.'''
