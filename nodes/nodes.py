@@ -178,13 +178,13 @@ class CircleDetection:
         #return (image_out, out_mask, out_string,)
         return (image_out, blank_image, out_string,)
 
-def updateTextWidget(node, widget, text):
+def updateDataWidget(node, widget, text):
     """
     Raises an event to update a widget's text.
     """
-    # It is my understanding that this is supposed to work via the "ui" 
-    # return value, but that appears to no longer be the case in the 
-    # latest version of ComfyUI.
+    # It is my understanding that this is supposed to work via the
+    # "ui" return value, but that appears to no longer be the case
+    # in the latest version of ComfyUI.
     PromptServer.instance.send_sync("exectails.text_updater.node_processed", {"node": node, "widget": widget, "text": text})
 
 class ShowData:
@@ -212,7 +212,7 @@ class ShowData:
 
     def process_data(self, input, data, unique_id):
         displayText = self.render(input)
-        updateTextWidget(unique_id, "data", displayText)
+        updateDataWidget(unique_id, "data", displayText)
         return {"ui": {"data": displayText}}
 
     def render(self, input):
