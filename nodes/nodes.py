@@ -216,14 +216,22 @@ class ShowData:
         return {"ui": {"data": displayText}}
 
     def render(self, input):
-        if not isinstance(input, list):
-            return str(input)
+        '''Render data.'''
+        output = ""
         listLen = len(input)
-        if listLen == 0:
-            return ""
-        if listLen == 1:
-            return str(input[0])
-        result = "List:\n"
-        for i, element in enumerate(input):
-            result += f"- {str(input[i])}\n"
+        if not isinstance(input, list):
+            output = str(input)
+            #return str(input)
+        elif listlen == 0
+        #listLen = len(input)
+        #if listLen == 0:
+            output = ""
+            #return ""
+        elif listLen == 1:
+            output = str(input[0])
+            #return str(input[0])
+        else:
+            result = "List:\n"
+            for i, element in enumerate(input):
+                result += f"- {str(input[i])}\n"
         return result
