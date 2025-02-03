@@ -256,7 +256,7 @@ class PrintHelloWorld:
     def INPUT_TYPES(cls):        
         return {"required": {  
                     "source": (any, {}),
-                    "text": ("STRING", {"multiline": False, "default": "Hello World"}),
+                    "text": ("STRING", {"multiline": True, "default": source}),
                     }
                 }
 
@@ -267,4 +267,5 @@ class PrintHelloWorld:
 
     def print_text(self, source, text):
         print(f"Tutorial Text : {text}")  
-        return {source}
+        print(f"Tutorial Text : {source}") 
+        return {}
