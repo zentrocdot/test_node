@@ -54,8 +54,8 @@ class CircleDetection:
         }
 
     #RETURN_TYPES = ("IMAGE", "MASK", "STRING",)
-    RETURN_TYPES = ("IMAGE", "STRING",)
-    #RETURN_NAMES = ("IMAGE", "MASK, "TEXT",)
+    RETURN_TYPES = ("IMAGE", "IMAGE", "STRING",)
+    RETURN_NAMES = ("IMAGE (Detection)", "IMAGE (Mask), "Data",)
     FUNCTION = "circle_detection"
     CATEGORY = "🧬 Object Detection Nodes"
     OUTPUT_NODE = True
@@ -167,4 +167,4 @@ class CircleDetection:
         #out_mask = torch.zeros((64,64), dtype=torch.float32, device="cpu")
         # Return None.
         #return (image_out, out_mask, out_string,)
-        return (image_out, out_string,)
+        return (image_out, image_out, out_string,)
