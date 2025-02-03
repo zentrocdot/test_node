@@ -24,7 +24,7 @@ class CircleDetection:
     def INPUT_TYPES(self):
         return {
             "required": {
-                "image": ("IMAGE"),
+                "image": ("IMAGE",),
                 "threshold_canny_edge": ("FLOAT", {"default": 50, "min": 0, "max": 2048}),
                 "threshold_circle_center": ("FLOAT", {"default": 30, "min": 0, "max": 2048}),
                 "minR": ("INT", {"default": 1, "min": 0, "max": 2048}),
@@ -147,4 +147,4 @@ class CircleDetection:
         #output_string = "Gotcha!"
         #output_mask = image_out
         #return (image_out, output_mask, output_string,)
-        return (image_out)
+        return (image_out,)
