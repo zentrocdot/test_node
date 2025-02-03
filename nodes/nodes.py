@@ -62,6 +62,8 @@ class CircleDetection:
 
     def draw_circles(self, img, detected_circles, debug, color_tuple_str, thickness):
         '''Draw circles.'''
+        height, width, channels = img.shape
+        blank_image = np.zeros((height,width,3), np.uint8)
         outstr = ""
         print(color_tuple_str)
         # Copy image to a new image.
@@ -167,4 +169,4 @@ class CircleDetection:
         #out_mask = torch.zeros((64,64), dtype=torch.float32, device="cpu")
         # Return None.
         #return (image_out, out_mask, out_string,)
-        return (image_out, image_out, out_string,)
+        return (image_out, blank_image, out_string,)
