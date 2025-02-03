@@ -170,4 +170,4 @@ class CircleDetection:
         #out_mask = torch.zeros((64,64), dtype=torch.float32, device="cpu")
         # Return None.
         #return (image_out, out_mask, out_string,)
-        return (image_out, blank_image, out_string,)
+        return (image_out, image_out, out_string,)
