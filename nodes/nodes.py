@@ -151,35 +151,35 @@ class CircleDetection:
         return (image_out, out_mask, out_string,)
 
 class DisplayData:
-  """Display data node."""
+    """Display data node."""
 
-  CATEGORY = "🧬 Object Detection Nodes"    
+    CATEGORY = "🧬 Object Detection Nodes"    
 
-  @classmethod
-  def INPUT_TYPES(cls):
-      return {
-          "required": {
-              "source": (any, {}),
-          },
-      }
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "source": (any, {}),
+            },
+        }
 
-  RETURN_TYPES = ()
-  FUNCTION = "display_data"
-  OUTPUT_NODE = True
+    RETURN_TYPES = ()
+    FUNCTION = "display_data"
+    OUTPUT_NODE = True
 
-  def display_data(self, source=None):
-      value = 'None'
-      if isinstance(source, str):
-          value = source
-      elif isinstance(source, (int, float, bool)):
-          value = str(source)
-      elif source is not None:
-          try:
-              value = json.dumps(source)
-          except Exception:
-              try:
-                  value = str(source)
-              except Exception:
-                  value = 'source exists, but could not be serialized.'
+    def display_data(self, source=None):
+        value = 'None'
+        if isinstance(source, str):
+            value = source
+        elif isinstance(source, (int, float, bool)):
+            value = str(source)
+        elif source is not None:
+            try:
+                value = json.dumps(source)
+            except Exception:
+                try:
+                    value = str(source)
+                except Exception:
+                    value = 'Source exists, but cannot be displaed.'
 
     return {"ui": {"text": (value,)}}
