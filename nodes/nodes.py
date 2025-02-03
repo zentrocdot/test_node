@@ -4,7 +4,7 @@
 import numpy as np
 import cv2
 import torch
-from PIL import Image, ImageDraw, ImageFont, ImageSequence
+from PIL import Image, ImageDraw, ImageFont, ImageOps, ImageSequence
 
 # Tensor to PIL function.
 def tensor2pil(image):
