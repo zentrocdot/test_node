@@ -153,9 +153,7 @@ class CircleDetection:
         return (image_out, out_mask, out_string,)
 
 class DisplayData:
-    '''Display data node.'''
-
-    CATEGORY = "🧬 Object Detection Nodes"    
+    '''Display data node.'''   
 
     @classmethod
     def INPUT_TYPES(cls):
@@ -166,6 +164,7 @@ class DisplayData:
         }
 
     RETURN_TYPES = ()
+    CATEGORY = "🧬 Object Detection Nodes"
     FUNCTION = "display_data"
     OUTPUT_NODE = True
 
