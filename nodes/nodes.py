@@ -180,7 +180,7 @@ class DisplayData:
     OUTPUT_NODE = True
     CATEGORY = "🧬 Object Detection Nodes"
     
-    def display_data(self, source=None):
+    def display_data(self, test, source=None):
         '''Display data.'''
         print("Source: Gotcha!")
         value = 'None'
@@ -200,73 +200,5 @@ class DisplayData:
         value = "test"
         return {"ui": {"text": (value,)}}
 
-class Everything(str):
-    def __ne__(self, _):
-        return False
 
-class ShowText:
-    @classmethod
-    def INPUT_TYPES(cls):
-        return {
-            "required": {
-                "text_int_float": (Everything("*"), {"forceInput": True}),
-            },
-        }
 
-    RETURN_TYPES = ()
-    FUNCTION = "show_text"
-    OUTPUT_NODE = True
-    INPUT_IS_LIST = (True,)
-    CATEGORY = "Bjornulf"
-    
-    def detect_type(self, value):
-        if isinstance(value, int):
-            return 'integer'
-        elif isinstance(value, float):
-            # Check if it has a decimal part
-            if value % 1 == 0:
-                return 'float' if str(value).endswith('.0') else 'integer'
-            return 'float'
-        elif isinstance(value, str):
-            try:
-                float_val = float(value)
-                if '.' in value:
-                    return 'float string'
-                if float_val.is_integer():
-                    return 'integer string'
-                return 'float string'
-            except ValueError:
-                return 'normal string'
-        else:
-            return 'other type'
-
-    def show_text(self, text_int_float):
-        type_info = [f"{value}" for value in text_int_float]
-        return {"ui": {"text": type_info}}
-
-NODE_CLASS_MAPPINGS = {
-    "ShowText|pysssss": ShowText,
-}
-
-NODE_DISPLAY_NAME_MAPPINGS = {
-    "ShowText|pysssss": "Show Text 🐍",
-}
-
-class PrintHelloWorld:     
-    @classmethod
-    def INPUT_TYPES(cls):        
-        return {"required": {  
-                    "source": (any, {}),
-                    "text": ("STRING", {"multiline": True, "default": source}),
-                    }
-                }
-
-    RETURN_TYPES = ()
-    FUNCTION = "print_text"
-    OUTPUT_NODE = True
-    CATEGORY = "🧬 Object Detection Nodes"
-
-    def print_text(self, source, text):
-        print(f"Tutorial Text : {text}")  
-        print(f"Tutorial Text : {source}") 
-        return {}
