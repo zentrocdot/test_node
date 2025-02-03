@@ -193,8 +193,8 @@ any = AnyType("*")
 class RgthreeDisplayAny:
   """Display any data node."""
 
-  NAME = get_name('Display Any')
-  CATEGORY = get_category()
+  #NAME = get_name('Display Any')
+  CATEGORY = "🧬 Object Detection Nodes"
 
   @classmethod
   def INPUT_TYPES(cls):  # pylint: disable = invalid-name, missing-function-docstring
@@ -232,8 +232,8 @@ class RgthreeDisplayInt:
   Can be ported over to DisplayAny if https://github.com/comfyanonymous/ComfyUI/issues/1527 fixed.
   """
 
-  NAME = get_name('Display Int')
-  CATEGORY = get_category()
+  #NAME = get_name('Display Int')
+  CATEGORY = "🧬 Object Detection Nodes"
 
   @classmethod
   def INPUT_TYPES(s):
