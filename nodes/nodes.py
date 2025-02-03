@@ -24,7 +24,7 @@ class CircleDetection:
     def INPUT_TYPES(self):
         return {
             "required": {
-                "image": ("IMAGE", "MASK", "STRING"),
+                "image": ("IMAGE"),
                 "threshold_canny_edge": ("FLOAT", {"default": 50, "min": 0, "max": 2048}),
                 "threshold_circle_center": ("FLOAT", {"default": 30, "min": 0, "max": 2048}),
                 "minR": ("INT", {"default": 1, "min": 0, "max": 2048}),
