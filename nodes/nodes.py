@@ -145,6 +145,6 @@ class CircleDetection:
         image_out = pil2tensor(img_output)
         # Return None.
         output_string = "Gotcha!"
-        output_mask = image_out
+        output_mask = image
         #return (image_out, output_mask, output_string,)
         return (image_out, output_mask, output_string,)
