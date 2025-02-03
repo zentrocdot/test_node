@@ -152,37 +152,37 @@ class CircleDetection:
         # Return None.
         return (image_out, out_mask, out_string,)
 
-class DisplayData:
-    '''Display data node.'''   
+class RgthreeDisplayAny:
+  """Display any data node."""
 
-    @classmethod
-    def INPUT_TYPES(cls):
-        return {
-            "required": {
-                "source": (any, {}),
-            },
-        }
+  NAME = get_name('Display Any')
+  CATEGORY = get_category()
 
-    RETURN_TYPES = ()
-    #RETURN_NAMES = ()
-    FUNCTION = "display_data"
-    CATEGORY = "🧬 Object Detection Nodes"
-    OUTPUT_NODE = True
+  @classmethod
+  def INPUT_TYPES(cls):  # pylint: disable = invalid-name, missing-function-docstring
+    return {
+      "required": {
+        "source": (any, {}),
+      },
+    }
 
-    def display_data(self, source=None):
-        '''Display data.''' 
-        value = "None"
-        if isinstance(source, str):
-            value = source
-        elif isinstance(source, (int, float, bool)):
-            value = str(source)
-        #elif source is not None:
-        #    try:
-        #        value = json.dumps(source)
-        #    except Exception:
-        #        try:
-        #            value = str(source)
-        #        except Exception:
-        #            value = 'Source exists, but cannot be displaed.'
-        #return ()
-        return {"ui": {"text": (value,)}}
+  RETURN_TYPES = ()
+  FUNCTION = "main"
+  OUTPUT_NODE = True
+
+  def main(self, source=None):
+    value = 'None'
+    if isinstance(source, str):
+      value = source
+    elif isinstance(source, (int, float, bool)):
+      value = str(source)
+    elif source is not None:
+      try:
+        value = json.dumps(source)
+      except Exception:
+        try:
+          value = str(source)
+        except Exception:
+          value = 'source exists, but could not be serialized.'
+
+    return {"ui": {"text": (value,)}}
