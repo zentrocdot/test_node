@@ -5,7 +5,7 @@ import numpy as np
 import cv2
 import torch
 from PIL import Image, ImageDraw
-#import json
+import json
 
 # Tensor to PIL function.
 def tensor2pil(image):
@@ -23,7 +23,7 @@ class CircleDetection:
     '''Circle detection node.'''
 
     @classmethod
-    def INPUT_TYPES(self):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "image": ("IMAGE",),
@@ -164,12 +164,14 @@ class DisplayData:
         }
 
     RETURN_TYPES = ()
-    CATEGORY = "🧬 Object Detection Nodes"
+    #RETURN_NAMES = ()
     FUNCTION = "display_data"
+    CATEGORY = "🧬 Object Detection Nodes"
     OUTPUT_NODE = True
 
     def display_data(self, source=None):
-        value = 'None'
+        '''Display data.''' 
+        value = "None"
         if isinstance(source, str):
             value = source
         elif isinstance(source, (int, float, bool)):
@@ -182,5 +184,5 @@ class DisplayData:
         #            value = str(source)
         #        except Exception:
         #            value = 'Source exists, but cannot be displaed.'
-        return ()
-        #return {"ui": {"text": (value,)}}
+        #return ()
+        return {"ui": {"text": (value,)}}
