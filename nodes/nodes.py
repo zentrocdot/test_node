@@ -98,7 +98,7 @@ class CircleDetection:
                     print("No.:", count, "x:", a, "y", b, "r:", r)
                     outstr = outstr + "No. " + str(count) + " x: " + str(a) + " y: " + str(b) + " r: " + str(r) + "\n"
         # Return image, co-ordinates and radius.
-        return newImg, (a, b, r), outstr
+        return newImg, (a, b, r), outstr, blank_image
 
     def pre_img(self, img):
         '''Preprocess image.'''
@@ -136,9 +136,9 @@ class CircleDetection:
     def post_img(self, img, detected_circles, debug, color_tuple, thickness):
         '''Postprocess image.'''
         # Draw circles.
-        img, (a, b, r), outstr = self.draw_circles(img, detected_circles, debug, color_tuple, thickness)
+        img, (a, b, r), outstr, blank_image = self.draw_circles(img, detected_circles, debug, color_tuple, thickness)
         # Return image and tuple.
-        return img, (a, b, r), outstr
+        return img, (a, b, r), outstr, blank_image
 
     def circle_detection(self, image, threshold_canny_edge, threshold_circle_center, minR, maxR, minDist, dp, color_tuple, thickness):
         '''Main script function.'''
@@ -160,7 +160,7 @@ class CircleDetection:
         # Process image. Detect circles.
         detected_circles = self.detect_circles(gray_blur, threshold_canny_edge, threshold_circle_center, minR, maxR, minDist, dp, debug)
         # Postrocess image.
-        img_output, _, out_string = self.post_img(img_input, detected_circles, debug, color_tuple, thickness)
+        img_output, _, out_string, blank_image = self.post_img(img_input, detected_circles, debug, color_tuple, thickness)
         # Create output image.
         img_output = Image.fromarray(img_output)
         # Create tensor.
