@@ -211,19 +211,19 @@ class ShowData:
     FUNCTION = "process_data"
 
     def process_data(self, input, data, unique_id):
-        displayText = self.render(input)
+        displayText = self.render_data(input)
         updateDataWidget(unique_id, "data", displayText)
         return {"ui": {"data": displayText}}
 
-    def render(self, input):
+    def render_data(self, input):
         '''Render data.'''
         output = ""
-        listLen = len(input)
+        listen = len(input)
         if not isinstance(input, list):
             output = str(input)
         elif listlen == 0:
             output = ""
-        elif listLen == 1:
+        elif listlen == 1:
             output = str(input[0])
         else:
             for i, element in enumerate(input):
