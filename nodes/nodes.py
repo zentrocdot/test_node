@@ -180,7 +180,7 @@ class DisplayData:
 
     def display_data(self, source=None):
         '''Display data.'''
-        print("Gotcha!")
+        print("Source: Gotcha!")
         value = 'None'
         if isinstance(source, str):
             value = source
@@ -194,5 +194,6 @@ class DisplayData:
                     value = str(source)
                 except Exception:
                     value = 'Source exists, but could be displayed.'
-        print(source) 
+        print("Source:", source) 
+        value = "test"
         return {"ui": {"text": (value,)}}
