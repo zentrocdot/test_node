@@ -4,7 +4,7 @@
 import numpy as np
 import cv2
 import torch
-from PIL import Image, ImageDraw, ImageFont, ImageOps, ImageSequence
+from PIL import Image, ImageDraw
 
 # Tensor to PIL function.
 def tensor2pil(image):
@@ -36,9 +36,8 @@ class CircleDetection:
             }
         }
 
-    #RETURN_TYPES = ("IMAGE", "MASK", "STRING")
     RETURN_TYPES = ("IMAGE", "MASK", "STRING",)
-    #RETURN_NAMES = ("IMAGE",)
+    #RETURN_NAMES = ("IMAGE", "MASK, "TEXT",)
     FUNCTION = "circle_detection"
     CATEGORY = "🧬 Object Detection Nodes"
     
@@ -76,7 +75,7 @@ class CircleDetection:
                 # Print dimensions and radius.
                 if debug: 
                     print("No.:", count, "x:", a, "y", b, "r:", r)
-                    outstr = outstr + "No. " + count + " x: " + a + " y: " + b + " r: " + r + "\n" 
+                    outstr = outstr + "No. " + str(count) + " x: " + str(a) + " y: " + str(b) + " r: " + str(r) + "\n" 
         # Return image, co-ordinates and radius.
         return newImg, (a, b, r), outstr
 
@@ -140,14 +139,12 @@ class CircleDetection:
         # Process image. Detect circles.
         detected_circles = self.detect_circles(gray_blur, threshold_canny_edge, threshold_circle_center, minR, maxR, minDist, dp, debug)
         # Postrocess image.
-        img_output, _, out_str = self.post_img(img_input, detected_circles, debug, color_tuple, thickness)
+        img_output, _, out_string = self.post_img(img_input, detected_circles, debug, color_tuple, thickness)
         # Create output image.
         img_output = Image.fromarray(img_output)
         # Create tensor.
         image_out = pil2tensor(img_output)
-        # Return None.
-        #output_string = "Gotcha!"
-        #w, h = None, None
         # Create simple mask for testing purposes.
-        out_mask = torch.zeros((64,64), dtype=torch.float32, device="cpu")          
+        out_mask = torch.zeros((64,64), dtype=torch.float32, device="cpu") 
+        # Return None.
         return (image_out, out_mask, out_string,)
