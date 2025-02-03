@@ -63,7 +63,8 @@ class CircleDetection:
     def draw_circles(self, img, detected_circles, debug, color_tuple_str, thickness):
         '''Draw circles.'''
         height, width, channels = img.shape
-        blank_image = np.zeros((height,width,3), np.uint8)
+        print(height, width, channels)
+        #blank_image = np.zeros((height,width,3), np.uint8)
         outstr = ""
         print(color_tuple_str)
         # Copy image to a new image.
@@ -98,7 +99,7 @@ class CircleDetection:
                     print("No.:", count, "x:", a, "y", b, "r:", r)
                     outstr = outstr + "No. " + str(count) + " x: " + str(a) + " y: " + str(b) + " r: " + str(r) + "\n"
         # Return image, co-ordinates and radius.
-        return newImg, (a, b, r), outstr, blank_image
+        return newImg, (a, b, r), outstr, newImg
 
     def pre_img(self, img):
         '''Preprocess image.'''
