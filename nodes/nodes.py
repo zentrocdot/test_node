@@ -179,7 +179,8 @@ class DisplayData:
     OUTPUT_NODE = True
 
     def display_data(self, source=None):
-        '''Display data.''' 
+        '''Display data.'''
+        print("Gotcha!")
         value = 'None'
         if isinstance(source, str):
             value = source
